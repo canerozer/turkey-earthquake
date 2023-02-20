@@ -1,6 +1,9 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 
+# IMPORTANT
+* Make sure to change the "image" and "mounts" keywords inside the devcontainer.json file, before running it on the VSCode.
+
 # Building Damage Assessment Model
 
 **Jump to: [Data sources](#data-sources) | [Setup](#setup) | [Data processing](#data-processing) | [Data splits & augmentation](#data-splits-&-augmentation)| [Overview of the model](#overview-of-the-model) | [Running experiments](#running-experiments) | [Results](#results) |**
@@ -186,3 +189,4 @@ We show the results on validation and test sets of our splits along with some se
 ![Pixel-level evaluation results on several different splits](./images/results_3.PNG)
 ![Validation sample I visualzization results](./images/results_2.PNG)
 ![Validation sample II visualzization results](./images/results_1.PNG)
+

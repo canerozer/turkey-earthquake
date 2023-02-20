@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM nvidia/cuda:11.0-cudnn8-devel-ubuntu18.04
+FROM nvidia/cuda:11.0.3-cudnn8-devel-ubuntu18.04
 
 # Miniconda archive to install
 ARG miniconda_version="4.9.2"
@@ -38,6 +38,14 @@ RUN apt-get update \
     libgl1-mesa-glx \
  && apt-get clean && rm -rf /var/lib/apt/lists/*
 
+# SSH installation
+RUN apt update
+RUN apt install openssh-server sudo -y && \
+useradd -rm -d /home/ubuntu -s /bin/bash -g root -G sudo -u 1000 test && \
+usermod -aG sudo test && \
+service ssh start && \
+echo 'test:test' | chpasswd
+
 # Miniconda installation
 WORKDIR /tmp
 RUN wget --quiet https://repo.continuum.io/miniconda/Miniconda3-py38_${MINICONDA_VERSION}-Linux-x86_64.sh && \
@@ -57,6 +65,9 @@ WORKDIR /inference_files
 COPY . /inference_files/
 
 RUN /opt/conda/bin/conda init bash
-RUN conda env create --file environment.yml
+RUN --mount=type=cache,target=/opt/conda/pkgs conda env create --file environment.yml
 
-ENTRYPOINT ["/opt/conda/envs/nlrc/bin/python", "./inference/inference.py"]
+# ENTRYPOINT ["/opt/conda/envs/nlrc/bin/python", "./inference/inference.py"]
+EXPOSE 22
+CMD ["/usr/sbin/sshd","-D"]
+

@@ -108,3 +108,11 @@ venv.bak/
 
 # Mac file system
 .DS_Store
+
+# Folders
+dataset
+final_mdl_all_disaster_splits
+# dataset/final_mdl_all_disaster_splits/*
+# dataset/raw/*
+# dataset/raw_tier3/*
+# final_mdl_all_disaster_splits/*/*
