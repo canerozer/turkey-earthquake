@@ -1,8 +1,11 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 
-# IMPORTANT
+# IMPORTANT
+
 * Make sure to change the "image" and "mounts" keywords inside the devcontainer.json file, before running it on the VSCode.
+* PyTorch is not GPU compatible, it is required to find out the GPU-compatible version.
+* Updates have been made on the dockerfile and other configurations.
 
 # Building Damage Assessment Model
 
